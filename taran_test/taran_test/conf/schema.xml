@@ -1,0 +1,26 @@
+<uniqueKey>id</uniqueKey>
+<!-- Fields added for books.csv load-->
+<field name="cat" type="text_general" indexed="true" stored="true"/>
+<field name="name" type="text_general" indexed="true" stored="true"/>
+<field name="price" type="tdouble" indexed="true" stored="true"/>
+<field name="inStock" type="boolean" indexed="true" stored="true"/>
+<field name="author" type="text_general" indexed="true" stored="true"/>
+<field name="uname" type="text_uppercase" indexed="true" stored="true"/>
+<!-- lowercases the entire field value, keeping it as a single token. -->
+<fieldType name="lowercase" class="solr.TextField" positionIncrementGap="100">
+  <analyzer>
+      <tokenizer class="solr.KeywordTokenizerFactory"/>
+      <filter class="solr.LowerCaseFilterFactory" />
+  </analyzer>
+</fieldType>
+<!--
+ <copyField source="title" dest="text"/>
+ <copyField source="body" dest="text"/>
+ -->
+ <copyField source="name" dest="uname"/>
+<fieldType name="text_uppercase" class="solr.TextField" positionIncrementGap="100">
+  <analyzer>
+    <tokenizer class="solr.WhitespaceTokenizerFactory"/>
+    <filter class="solr.UpperCaseFilterFactory"/>
+  </analyzer>
+</fieldType>

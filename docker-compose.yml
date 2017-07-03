@@ -1,0 +1,12 @@
+version: '2'
+services:
+  solr:
+    image: solr
+    ports:
+     - "8983:8983"
+    volumes:
+      - ./taran_test:/opt/solr/server/solr/taran_test
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - mycores
